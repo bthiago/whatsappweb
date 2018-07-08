@@ -1,0 +1,17 @@
+<mat-card class="wrapper">
+  <div class="app-container">
+    <app-chat-list class="chat-list-container"
+               (showContactProfile)="isContactProfileActive = true"
+               (showUserProfile)="isUserProfileActive = true"></app-chat-list>
+    <app-user-profile class="user-profile-container"
+                  (closeUserProfile)="isUserProfileActive = false"
+                  [class.active]="isUserProfileActive"></app-user-profile>
+    <div class="chat-window">
+      <app-chat-window class="chat-window-container"
+                   (showOptions)="isContactProfileActive = !isContactProfileActive"></app-chat-window>
+      <app-contact-profile class="contact-profile-container"
+                       (closeContactProfile)="isContactProfileActive = false"
+                       [class.active]="isContactProfileActive"></app-contact-profile>
+    </div>
+  </div>
+</mat-card>

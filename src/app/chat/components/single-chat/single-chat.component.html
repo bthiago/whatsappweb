@@ -1,0 +1,10 @@
+<div class="chat-container">
+  <div (click)="contactAvatarClicked()">
+    <img class="avatar" src="{{chat.senderImage}}"/>
+  </div>
+  <div class="chat-summary">
+    <div class="chat-title">{{chat.senderName}}</div>
+    <div class="chat-message"> {{chat.lastMessage}} </div>
+  </div>
+
+</div>
