@@ -1,14 +1,13 @@
 <div class="header chat-list-header">
-  <div class="avatar" (click)="showAvatarClicked()">Click</div>
+  <div class="avatar" (click)="showAvatarClicked()">
+      <img class="avatar" src="https://robohash.org/quisetnam.jpg?size=50x50&set=set1"/>
+  </div>
   <div class="header-options">
-    <mat-icon>home</mat-icon>
+    <mat-icon>menu</mat-icon>
   </div>
 </div>
-  <!-- <div *ngFor="let msg of msgs" class="chat-list"> -->
-
-    <div class="chat-list" >
-        <div *ngFor="let msg of msgs">
-            <single-chat class="chat" [chat]="msg" (showContactProfile)="contactAvatarClicked($event)"></single-chat>
-        </div>        
-    </div>
-  
+<div class="chat-list">
+  <div *ngFor="let msg of msgs">
+    <single-chat class="chat" [chat]="msg" (showContactProfile)="contactAvatarClicked($event)"></single-chat>
+  </div>
+</div>

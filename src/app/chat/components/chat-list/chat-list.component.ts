@@ -8,7 +8,6 @@ import { MSG_ARRAY } from '../../../../assets/chatMsgs';
 })
 export class ChatListComponent {
   msgs: ChatMsg[] = MSG_ARRAY;
-  msg = MSG_ARRAY[0];
   @Output()
   showUserProfile: EventEmitter<any> = new EventEmitter<any>();
   @Output()
