@@ -8,9 +8,13 @@ import { ChatMsg } from './ChatMsg';
 })
 export class SingleChatComponent {
   @Input() chat: ChatMsg;
-  @Output()
-  showContactProfile: EventEmitter<any> = new EventEmitter<any>();
+  @Output() showContactProfile: EventEmitter<any> = new EventEmitter<any>();
+  @Output() changeChatWindow: EventEmitter<any> = new EventEmitter<any>();
+
   contactAvatarClicked() {
     this.showContactProfile.emit(true);
+  }
+  chatItemOnListClicked(event) {
+    this.changeChatWindow.emit(true);
   }
 }

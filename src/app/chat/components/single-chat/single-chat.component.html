@@ -1,4 +1,4 @@
-<div class="chat-container">
+<div class="chat-container" (click)="chatItemOnListClicked($event)">
   <div (click)="contactAvatarClicked()">
     <img class="avatar" src="{{chat.senderImage}}"/>
   </div>

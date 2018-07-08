@@ -12,11 +12,16 @@ export class ChatListComponent {
   showUserProfile: EventEmitter<any> = new EventEmitter<any>();
   @Output()
   showContactProfile: EventEmitter<any> = new EventEmitter<any>();
+  @Output()
+  showChatWindow: EventEmitter<any> = new EventEmitter<any>();
 
   showAvatarClicked() {
     this.showUserProfile.emit(true);
   }
   contactAvatarClicked() {
     this.showContactProfile.emit(true);
+  }
+  onChangeChatWindow(msg) {
+    this.showChatWindow.emit(msg);
   }
 }
