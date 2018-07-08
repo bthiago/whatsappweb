@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter} from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { ChatMsg } from '../single-chat/ChatMsg';
 
 @Component({
@@ -7,10 +7,6 @@ import { ChatMsg } from '../single-chat/ChatMsg';
   styleUrls: ['./chat-window.component.css']
 })
 export class ChatWindowComponent {
-  chatHistory = {
-    sent : true,
-    msgText : 'Hey, How are you???'
-  };
   msg = {
     'senderID': 1,
     'senderName': 'Ced MacCague',

@@ -44,3 +44,10 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+:host {
+  cursor: pointer;
+}
+:host:hover{
+  background: #dfdfdf;
+}
