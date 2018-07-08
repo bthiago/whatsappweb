@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'simple-msg',
+  selector: 'app-simple-msg',
   templateUrl: './simple-msg.component.html',
   styleUrls: ['./simple-msg.component.css']
 })
