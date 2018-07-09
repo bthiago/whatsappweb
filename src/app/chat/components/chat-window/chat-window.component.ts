@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter, Input, ViewChild, ElementRef, AfterVie
 import { ChatMsg } from '../single-chat/ChatMsg';
 import { chatWindowData } from 'src/assets/chatWindowData';
 import { chatListData } from '../../../../assets/chatListData';
+import { Socket } from '../../../websocket/echoSocket';
 
 @Component({
   selector: 'app-chat-window',
@@ -46,9 +47,12 @@ export class ChatWindowComponent implements AfterViewChecked {
         msgText: messageText.value
       });
 
+      const connection = new Socket(messageText.value, this.chatHistoryData.chatHistory);
       // Reset input field
       this.newMsgText = 'Type a message';
       this.showPlaceholder = true;
     }
+
+
   }
 }
