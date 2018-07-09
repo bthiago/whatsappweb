@@ -1,3 +1,7 @@
+To run the app, use the following commands: 
+npm install
+npm run app
+
 # Whatsappweb
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
