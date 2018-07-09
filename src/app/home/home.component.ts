@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { MSG_ARRAY } from 'src/assets/chatMsgs';
-
+import { chatWindowData } from 'src/assets/chatWindowData';
+import { chatListData } from '../../assets/chatListData';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  message = MSG_ARRAY[2];
-
+  windowHeaderData = chatListData[0];
+  windowChatHistory = chatWindowData[0];
   constructor() { }
 
   ngOnInit() {
   }
 
   changeChatWindow(seletedChatMsg) {
-    this.message = seletedChatMsg;
+    this.windowHeaderData = chatListData[seletedChatMsg.senderID - 1];
+    this.windowChatHistory = chatWindowData[seletedChatMsg.senderID - 1];
   }
 }

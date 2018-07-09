@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, Input, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { ChatMsg } from '../single-chat/ChatMsg';
-import { MSG_ARRAY } from 'src/assets/chatMsgs';
+import { chatWindowData } from 'src/assets/chatWindowData';
+import { chatListData } from '../../../../assets/chatListData';
 
 @Component({
   selector: 'app-chat-window',
@@ -12,11 +13,9 @@ export class ChatWindowComponent implements AfterViewChecked {
   @ViewChild('chatContainer') chatContainer: ElementRef;
   newMsgText = 'Type a message';
   showPlaceholder = true;
-
-  @Input() msg: ChatMsg;
-  // msg = MSG_ARRAY[2];
-  @Output()
-  showOptions: EventEmitter<any> = new EventEmitter<any>();
+  @Input() chatWindowHeaderData;
+  @Input() chatHistoryData;
+  @Output() showOptions: EventEmitter<any> = new EventEmitter<any>();
   ngAfterViewChecked(): void {
       // scroll chat container to bottom
       this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
@@ -42,7 +41,7 @@ export class ChatWindowComponent implements AfterViewChecked {
     // Only send if placholder not active
     if (!this.showPlaceholder) {
       // add value to the chat history
-      this.msg.chatHistory.push({
+      this.chatHistoryData.chatHistory.push({
         sent: true,
         msgText: messageText.value
       });

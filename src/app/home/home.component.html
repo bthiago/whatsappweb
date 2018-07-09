@@ -8,7 +8,8 @@
                   (closeUserProfile)="isUserProfileActive = false"
                   [class.active]="isUserProfileActive"></app-user-profile>
     <div class="chat-window">
-      <app-chat-window [msg]="message" class="chat-window-container"
+      <app-chat-window [chatWindowHeaderData]="windowHeaderData"
+       [chatHistoryData]="windowChatHistory" class="chat-window-container"
                    (showOptions)="isContactProfileActive = !isContactProfileActive"></app-chat-window>
       <app-contact-profile class="contact-profile-container"
                        (closeContactProfile)="isContactProfileActive = false"

@@ -1,5 +1,5 @@
 <div class="header chat-window-header">
-  <app-single-chat [chat]="msg" class="header-chat"></app-single-chat>
+  <app-single-chat [chat]="chatWindowHeaderData" class="header-chat"></app-single-chat>
   <div class="header-options" (click)="btnOptionsClicked()">
     <mat-icon>menu</mat-icon>
   </div>
@@ -7,7 +7,7 @@
 
 
 <div #chatContainer class="chat-message-container">
-  <div *ngFor="let chatHistory of msg.chatHistory">
+  <div *ngFor="let chatHistory of chatHistoryData.chatHistory">
     <app-simple-msg [isSent]="chatHistory.sent" [message]="chatHistory.msgText"></app-simple-msg>
   </div>
 </div>

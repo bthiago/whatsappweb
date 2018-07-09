@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { ChatMsg } from '../single-chat/ChatMsg';
-import { MSG_ARRAY } from '../../../../assets/chatMsgs';
+import { chatListData } from 'src/assets/chatListData';
 @Component({
   selector: 'app-chat-list',
   templateUrl: './chat-list.component.html',
@@ -10,7 +10,7 @@ export class ChatListComponent {
   searchText = 'Search or start a new chat';
   showPlaceholder = true;
 
-  msgs: ChatMsg[] = MSG_ARRAY;
+  msgs = chatListData;
   @ViewChild('chatList') chatList: ElementRef;
   @Output()
   showUserProfile: EventEmitter<any> = new EventEmitter<any>();
