@@ -1,7 +1,4 @@
 import { Component, Output, EventEmitter, Input, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
-import { ChatMsg } from '../single-chat/ChatMsg';
-import { chatWindowData } from 'src/assets/chatWindowData';
-import { chatListData } from '../../../../assets/chatListData';
 import { Socket } from '../../../websocket/echoSocket';
 
 @Component({

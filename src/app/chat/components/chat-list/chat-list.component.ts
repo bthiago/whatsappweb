@@ -1,6 +1,5 @@
 import { Component, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { ChatMsg } from '../single-chat/ChatMsg';
-import { chatListData } from 'src/assets/chatListData';
+import { ChatListService } from '../../../services/chat-list.service';
 @Component({
   selector: 'app-chat-list',
   templateUrl: './chat-list.component.html',
@@ -10,7 +9,11 @@ export class ChatListComponent {
   searchText = 'Search or start a new chat';
   showPlaceholder = true;
 
-  msgs = chatListData;
+  msgs;
+  constructor(private _chatListService: ChatListService) {
+    this.setDataSource();
+  }
+
   @ViewChild('chatList') chatList: ElementRef;
   @Output()
   showUserProfile: EventEmitter<any> = new EventEmitter<any>();
@@ -19,6 +22,18 @@ export class ChatListComponent {
   @Output()
   showChatWindow: EventEmitter<any> = new EventEmitter<any>();
 
+  setDataSource(): any {
+    this._chatListService.getAllChatListData()
+      .subscribe(
+        res => {
+          this.msgs = res;
+        },
+        err => {
+          console.log('service failed');
+          // this.openSnackBar(`Error: ${err.error.text}`, 'Register a few users');
+        }
+      );
+  }
   showAvatarClicked() {
     this.showUserProfile.emit(true);
   }

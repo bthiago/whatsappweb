@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --watch",
+    "server": "json-server --watch chatData.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -24,6 +25,7 @@
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
     "core-js": "^2.5.4",
+    "json-server": "^0.14.0",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },
