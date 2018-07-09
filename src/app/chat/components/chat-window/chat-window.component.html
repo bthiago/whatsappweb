@@ -11,3 +11,14 @@
     <app-simple-msg [isSent]="chatHistory.sent" [message]="chatHistory.msgText"></app-simple-msg>
   </div>
 </div>
+
+<div class="chatMessageBox">
+  <mat-icon  class="grey-icon smiley">home</mat-icon>
+  <div class="chatMessageInput">
+    <input #newMessageInput matInput [(ngModel)]="newMsgText" 
+    [ngClass]="{'gray-text': showPlaceholder}" 
+    (focus)="removePlaceholder()" (keydown)="removePlaceholder()"
+      (blur)="viewPlaceholder()" (keyup)="viewPlaceholder()">
+  </div>
+  <mat-icon (click)="sendMessage(newMessageInput)"  class="grey-icon sendButton">arrow_right</mat-icon>
+</div>

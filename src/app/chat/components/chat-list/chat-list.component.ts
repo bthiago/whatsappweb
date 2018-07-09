@@ -59,7 +59,6 @@ export class ChatListComponent {
       this.searchText = 'Search or start a new chat';
       this.showPlaceholder = true;
     }
-
   }
 
 }
