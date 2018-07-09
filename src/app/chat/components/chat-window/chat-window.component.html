@@ -6,7 +6,7 @@
 </div>
 
 
-<div class="chat-message-container">
+<div #chatContainer class="chat-message-container">
   <div *ngFor="let chatHistory of msg.chatHistory">
     <app-simple-msg [isSent]="chatHistory.sent" [message]="chatHistory.msgText"></app-simple-msg>
   </div>
