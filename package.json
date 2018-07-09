@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve --watch",
     "server": "json-server --watch chatData.json",
+    "app": "npm start | npm run server",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
