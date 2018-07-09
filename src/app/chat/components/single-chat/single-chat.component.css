@@ -1,8 +1,10 @@
+:host-context(.theme-white) .chat-container {
+  background: white;
+}
 .chat-container {
   margin: 0;
   padding: 8px 10px;
   display: flex;
-  /*background-color: #FFF;*/
 }
 
 .avatar {

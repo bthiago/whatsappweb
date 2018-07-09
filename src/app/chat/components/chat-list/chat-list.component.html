@@ -1,13 +1,23 @@
 <div class="header chat-list-header">
   <div class="avatar" (click)="showAvatarClicked()">
-      <img class="avatar" src="https://robohash.org/quisetnam.jpg?size=50x50&set=set1"/>
+    <img class="avatar" src="https://robohash.org/quisetnam.jpg?size=50x50&set=set1" />
   </div>
   <div class="header-options">
     <mat-icon>menu</mat-icon>
   </div>
 </div>
-<div class="chat-list">
+<div class="searchBox">
+  <div class="searchInput">
+    <mat-icon  class="grey-icon">search</mat-icon>
+    <input matInput [(ngModel)]="searchText" 
+    [ngClass]="{'gray-text': showPlaceholder}" 
+    (focus)="removePlaceholder()" (keydown)="removePlaceholder()"
+      (blur)="viewPlaceholder()" (keyup)="searchKeyUp($event.target.value)">
+
+  </div>
+</div>
+<div #chatList class="chat-list">
   <div *ngFor="let msg of msgs">
-    <app-single-chat class="chat" [chat]="msg" (changeChatWindow)='onChangeChatWindow(msg)' (showContactProfile)="contactAvatarClicked($event)"></app-single-chat>
+    <app-single-chat class="chat theme-white" [chat]="msg" (changeChatWindow)='onChangeChatWindow(msg)' (showContactProfile)="contactAvatarClicked($event)"></app-single-chat>
   </div>
 </div>
