@@ -62,7 +62,7 @@ export class Socket {
                 msgText: `You sent me: ${evt.data}`
             });
         }
-        // websocket.close();
+        this.websocket.close();
     }
 
     onError(evt) {
