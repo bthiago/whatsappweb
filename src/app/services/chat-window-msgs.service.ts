@@ -7,12 +7,16 @@ import { HttpClient } from '@angular/common/http';
 export class ChatWindowMsgsService {
 
   url = 'http://localhost:3000';
+  prodUrl = 'https://whatsapp-web-77307.firebaseio.com';
+
   constructor(private _http: HttpClient) { }
 
   getChatWindowData() {
-    return this._http.get<any>(this.url + '/chatWindowData');
+    // return this._http.get<any>(this.url + '/chatWindowData');
+    return this._http.get<any>(this.prodUrl + '/chatWindowData.json');
   }
   getChatWindowDataById(id) {
-    return this._http.get<any>(this.url + '/chatWindowData/' + id);
+    // return this._http.get<any>(this.url + '/chatWindowData/' + id);
+    return this._http.get<any>(this.prodUrl + `/chatWindowData/${id - 1}.json`);
   }
 }

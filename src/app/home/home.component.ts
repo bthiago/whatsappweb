@@ -10,6 +10,8 @@ import { ChatWindowMsgsService } from '../services/chat-window-msgs.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  isUserProfileActive;
+  isContactProfileActive;
   windowHeaderData = chatListData[0];
   windowChatHistory = chatWindowData[0];
   constructor(private _chatListService: ChatListService,
