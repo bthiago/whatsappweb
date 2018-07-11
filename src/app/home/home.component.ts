@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatListService } from '../services/chat-list.service';
 import { ChatWindowMsgsService } from '../services/chat-window-msgs.service';
-import { ChatWindowDataInterface, ChatListDataInterface } from 'dist/assets/chatInterfaces';
+import { ChatWindowDataInterface, ChatListDataInterface } from '../../assets/chatInterfaces';
 
 @Component({
   selector: 'app-home',
