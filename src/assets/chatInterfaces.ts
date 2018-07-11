@@ -1,5 +1,5 @@
 export interface ChatListDataInterface {
-    senderID: number;
+    id: number;
     senderName: string;
     lastMessage: string;
     timeStamp: string;
