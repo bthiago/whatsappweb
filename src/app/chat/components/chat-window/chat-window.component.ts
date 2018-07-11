@@ -28,10 +28,14 @@ export class ChatWindowComponent implements AfterViewChecked {
       this.showPlaceholder = false;
     }
   }
-  viewPlaceholder() {
+  viewPlaceholder(event) {
     if (this.newMsgText === '') {
       this.newMsgText = 'Type a message';
       this.showPlaceholder = true;
+    } else {
+      if (event.keyCode === 13) {
+        this.sendMessage(this.newMessageInput.nativeElement);
+      }
     }
   }
 

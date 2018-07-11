@@ -18,7 +18,7 @@
     <input #newMessageInput matInput [(ngModel)]="newMsgText" 
     [ngClass]="{'gray-text': showPlaceholder}" 
     (focus)="removePlaceholder()" (keydown)="removePlaceholder()"
-      (blur)="viewPlaceholder()" (keyup)="viewPlaceholder()">
+      (blur)="viewPlaceholder()" (keyup)="viewPlaceholder($event)">
   </div>
   <mat-icon (click)="sendMessage(newMessageInput)"  class="grey-icon sendButton">arrow_right</mat-icon>
 </div>
