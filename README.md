@@ -1,6 +1,6 @@
 To run the app, use the following commands: 
 npm install
-npm run app
+npm start
 
 # Whatsappweb
 
