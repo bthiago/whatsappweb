@@ -21,7 +21,7 @@
   </div>
 </div>
 <div #chatList class="chat-list">
-  <div *ngFor="let msg of msgs">
+  <div *ngFor="let msg of listChatArray">
     <app-single-chat class="chat theme-white" [chat]="msg" (changeChatWindow)='onChangeChatWindow(msg)' (showContactProfile)="contactAvatarClicked($event)"></app-single-chat>
   </div>
 </div>

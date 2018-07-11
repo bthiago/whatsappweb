@@ -1,17 +1,16 @@
-import { Component, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { ChatListService } from '../../../services/chat-list.service';
+import { Component, Output, EventEmitter, ViewChild, ElementRef, Input } from '@angular/core';
+import { ChatListDataInterface } from '../../../../assets/chatInterfaces';
 @Component({
   selector: 'app-chat-list',
   templateUrl: './chat-list.component.html',
   styleUrls: ['./chat-list.component.css']
 })
 export class ChatListComponent {
+  @Input() listChatArray;
   searchText = 'Search or start a new chat';
   showPlaceholder = true;
 
-  msgs;
-  constructor(private _chatListService: ChatListService) {
-    this.setDataSource();
+  constructor() {
   }
 
   @ViewChild('chatList') chatList: ElementRef;
@@ -22,18 +21,6 @@ export class ChatListComponent {
   @Output()
   showChatWindow: EventEmitter<any> = new EventEmitter<any>();
 
-  setDataSource(): any {
-    this._chatListService.getAllChatListData()
-      .subscribe(
-        res => {
-          this.msgs = res;
-        },
-        err => {
-          console.log('service failed');
-          // this.openSnackBar(`Error: ${err.error.text}`, 'Register a few users');
-        }
-      );
-  }
   showAvatarClicked() {
     this.showUserProfile.emit(true);
   }
@@ -61,11 +48,11 @@ export class ChatListComponent {
       const chatBoxText = list.children[i].innerText; // searches both: title and last message
       // just for title
       // const title = list.children[i].getElementsByClassName('chat-title')[0].innerText;
-        if (chatBoxText.toUpperCase().indexOf(filter) > -1) {
-          chatBoxes[i].style.display = '';
-        } else {
-          chatBoxes[i].style.display = 'none';
-        }
+      if (chatBoxText.toUpperCase().indexOf(filter) > -1) {
+        chatBoxes[i].style.display = '';
+      } else {
+        chatBoxes[i].style.display = 'none';
+      }
     }
     // this.msgs = this.msgs.filter((item) => item.senderName === 'Dunn Blindt');
   }

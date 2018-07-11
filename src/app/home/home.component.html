@@ -1,6 +1,7 @@
 <mat-card class="wrapper">
   <div class="app-container">
     <app-chat-list class="chat-list-container"
+              [listChatArray]="msgs"
                (showContactProfile)="isContactProfileActive = true"
                (showUserProfile)="isUserProfileActive = true"
                (showChatWindow)="changeChatWindow($event)"></app-chat-list>
