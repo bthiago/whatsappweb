@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ChatListService } from '../services/chat-list.service';
 import { ChatWindowMsgsService } from '../services/chat-window-msgs.service';
 import { ChatWindowDataInterface, ChatListDataInterface } from '../../assets/chatInterfaces';
-import { chatWindowData } from 'src/assets/chatWindowData';
-import { chatListData } from '../../assets/chatListData';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -22,9 +20,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.setDataSource();
-    // Setting the first msg on list and chat window
-    this.windowHeaderData = chatListData[0];
-    this.windowChatHistory = chatWindowData[0];
   }
   setDataSource(): any {
     if (!localStorage.getItem('chatListData')) {
@@ -32,6 +27,7 @@ export class HomeComponent implements OnInit {
         .subscribe(
           res => {
             this.msgs = res;
+            this.windowHeaderData = res[0];
             localStorage.setItem('chatListData', JSON.stringify(res));
           },
           err => {
@@ -41,6 +37,7 @@ export class HomeComponent implements OnInit {
         );
     } else {
       this.msgs = JSON.parse(localStorage.getItem('chatListData'));
+      this.windowHeaderData = this.msgs[0];
     }
 
     if (!localStorage.getItem('chatWindowData')) {
@@ -48,6 +45,7 @@ export class HomeComponent implements OnInit {
         .subscribe(
           res => {
             this.allWindowChatHistory = res;
+            this.windowChatHistory = res[0];
             localStorage.setItem('chatWindowData', JSON.stringify(res));
           },
           err => {
@@ -57,6 +55,7 @@ export class HomeComponent implements OnInit {
         );
     } else {
       this.allWindowChatHistory = JSON.parse(localStorage.getItem('chatWindowData'));
+      this.windowChatHistory =  this.allWindowChatHistory[0];
     }
   }
 

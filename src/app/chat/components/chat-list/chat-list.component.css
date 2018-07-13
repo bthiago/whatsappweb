@@ -16,7 +16,6 @@
 
 .chat-list {
   min-width: 250px;
-  /*background-color: #dea89f;*/
   flex: 1;
   overflow-y: scroll;
 }
@@ -86,6 +85,7 @@ color: #bbbbbb;
 }
 .searchInput input {
   border: none;
+  width: 85%;
 }
 .gray-text, .grey-icon{
   color: #999999;
@@ -116,7 +116,6 @@ input:focus {
   overflow: hidden;
 }
 .chat-summary {
-  /*background-color: #00bfa5;*/
   flex: 1;
   display: flex;
   flex-direction: column;

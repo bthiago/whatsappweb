@@ -9,7 +9,7 @@
                   (closeUserProfile)="isUserProfileActive = false"
                   [class.active]="isUserProfileActive"></app-user-profile>
     <div class="chat-window">
-      <app-chat-window [chatWindowHeaderData]="windowHeaderData"
+      <app-chat-window [chatWindowHeaderData]="windowHeaderData" *ngIf="windowHeaderData && windowChatHistory"
        [chatHistoryData]="windowChatHistory" class="chat-window-container"
                    (showOptions)="isContactProfileActive = !isContactProfileActive"></app-chat-window>
       <app-contact-profile class="contact-profile-container"
