@@ -1,7 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, NgZone } from '@angular/core';
 import { ChatListService } from '../services/chat-list.service';
 import { ChatWindowMsgsService } from '../services/chat-window-msgs.service';
 import { ChatWindowDataInterface, ChatListDataInterface } from '../../assets/chatInterfaces';
+import { AngularFireDatabase } from 'angularfire2/database';
+import * as firebase from 'firebase/app';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,6 +12,7 @@ import { ChatWindowDataInterface, ChatListDataInterface } from '../../assets/cha
 })
 export class HomeComponent implements OnInit {
   isUserProfileActive;
+  topics;
   isContactProfileActive;
   msgs: ChatListDataInterface[];
   allWindowChatHistory: ChatWindowDataInterface[];
@@ -16,12 +20,25 @@ export class HomeComponent implements OnInit {
   windowChatHistory;
   constructor(private _chatListService: ChatListService,
     private elem: ElementRef,
-    private _chatWindowMsgsService: ChatWindowMsgsService) {
+    private _chatWindowMsgsService: ChatWindowMsgsService,
+    private cdr: ChangeDetectorRef,
+    private ngZone: NgZone,
+    public db: AngularFireDatabase) {
   }
   @ViewChild('appChatList') appChatList;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.setDataSource();
+    firebase.database().ref('chatWindowData').on('value', snapshot => {
+      this.ngZone.run(() => {
+        this.allWindowChatHistory = snapshot.val();
+      });
+      // this.cdr.detectChanges();
+    });
+    firebase.database().ref('chatListData').on('value', snapshot => {
+      this.msgs = snapshot.val();
+      // this.cdr.detectChanges();
+    });
   }
   setDataSource(): any {
     if (!localStorage.getItem('chatListData')) {
