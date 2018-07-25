@@ -32,11 +32,13 @@ export class HomeComponent implements OnInit {
     firebase.database().ref('chatWindowData').on('value', snapshot => {
       this.ngZone.run(() => {
         this.allWindowChatHistory = snapshot.val();
+        localStorage.setItem('chatWindowData', JSON.stringify(this.allWindowChatHistory));
       });
       // this.cdr.detectChanges();
     });
     firebase.database().ref('chatListData').on('value', snapshot => {
       this.msgs = snapshot.val();
+      localStorage.setItem('chatListData', JSON.stringify(this.msgs));
       // this.cdr.detectChanges();
     });
   }

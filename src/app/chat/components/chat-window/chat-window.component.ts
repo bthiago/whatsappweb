@@ -64,7 +64,7 @@ export class ChatWindowComponent implements AfterViewChecked {
           (error) =>  {
             console.log(error);
           });
-      }, 1000);
+      }, 5000);
       // Reset input field
       this.newMsgText = 'Type a message';
       this.showPlaceholder = true;
