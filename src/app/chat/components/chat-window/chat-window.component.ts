@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter, Input, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { Socket } from '../../../websocket/echoSocket';
+import { ChatWindowMsgsService } from '../../../services/chat-window-msgs.service';
 
 @Component({
   selector: 'app-chat-window',
@@ -7,6 +8,8 @@ import { Socket } from '../../../websocket/echoSocket';
   styleUrls: ['./chat-window.component.css']
 })
 export class ChatWindowComponent implements AfterViewChecked {
+  constructor( private _chatWindowService: ChatWindowMsgsService) {
+  }
   @ViewChild('newMessageInput') newMessageInput: ElementRef;
   @ViewChild('chatContainer') chatContainer: ElementRef;
   newMsgText = 'Type a message';
@@ -51,8 +54,17 @@ export class ChatWindowComponent implements AfterViewChecked {
         sent: true,
         msgText: messageText.value
       });
-
       const connection = new Socket(messageText.value, this.chatHistoryData.chatHistory);
+      setTimeout(() => {
+        this._chatWindowService.updateChatWindowData(this.chatHistoryData.id - 1, this.chatHistoryData.chatHistory)
+        .subscribe(
+          (response) => {
+            console.log(response);
+          },
+          (error) =>  {
+            console.log(error);
+          });
+      }, 1000);
       // Reset input field
       this.newMsgText = 'Type a message';
       this.showPlaceholder = true;

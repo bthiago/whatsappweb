@@ -19,4 +19,7 @@ export class ChatWindowMsgsService {
     // return this._http.get<any>(this.url + '/chatWindowData/' + id);
     return this._http.get<any>(this.prodUrl + `/chatWindowData/${id - 1}.json`);
   }
+  updateChatWindowData(id, chatMsgs) {
+    return this._http.put(this.prodUrl + `/chatWindowData/${id}/chatHistory.json`,  JSON.stringify(chatMsgs));
+  }
 }
