@@ -54,8 +54,8 @@ export class ChatWindowComponent implements AfterViewChecked {
         sent: true,
         msgText: messageText.value
       });
-      const connection = new Socket(messageText.value, this.chatHistoryData.chatHistory);
-      setTimeout(() => {
+      const updateChatCallback = () => {
+
         this._chatWindowService.updateChatWindowData(this.chatHistoryData.id - 1, this.chatHistoryData.chatHistory)
         .subscribe(
           (response) => {
@@ -63,8 +63,11 @@ export class ChatWindowComponent implements AfterViewChecked {
           },
           (error) =>  {
             console.log(error);
-          });
-      }, 5000);
+          }
+        );
+
+      };
+      const connection = new Socket(messageText.value, this.chatHistoryData.chatHistory, updateChatCallback);
       // Reset input field
       this.newMsgText = 'Type a message';
       this.showPlaceholder = true;

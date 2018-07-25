@@ -3,16 +3,18 @@ export class Socket {
 
     wsUri = 'wss://echo.websocket.org/';
     output;
+    callBack;
     sentMessage;
     websocket;
     chatArray;
     init() {
         this.testWebSocket();
     }
-    constructor(sentMsg, chatArray) {
+    constructor(sentMsg, chatArray, callback) {
         this.init();
         this.sentMessage = sentMsg;
         this.chatArray = chatArray;
+        this.callBack = callback;
     }
 
     testWebSocket() {
@@ -62,6 +64,7 @@ export class Socket {
                 msgText: `You sent me: ${evt.data}`
             });
         }
+        this.callBack();
         this.websocket.close();
     }
 
