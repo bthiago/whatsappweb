@@ -1,4 +1,7 @@
 <div class="header chat-window-header">
+    <div class="backButton" (click)="backButtonClicked()">
+        <mat-icon>arrow_back</mat-icon>
+      </div>    
   <app-single-chat [chat]="chatWindowHeaderData" class="header-chat"></app-single-chat>
   <div class="header-options" (click)="btnOptionsClicked()">
     <mat-icon>menu</mat-icon>

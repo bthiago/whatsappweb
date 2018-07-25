@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ChatListService } from '../services/chat-list.service';
 import { ChatWindowMsgsService } from '../services/chat-window-msgs.service';
 import { ChatWindowDataInterface, ChatListDataInterface } from '../../assets/chatInterfaces';
@@ -15,8 +15,10 @@ export class HomeComponent implements OnInit {
   windowHeaderData;
   windowChatHistory;
   constructor(private _chatListService: ChatListService,
+    private elem: ElementRef,
     private _chatWindowMsgsService: ChatWindowMsgsService) {
   }
+  @ViewChild('appChatList') appChatList;
 
   ngOnInit() {
     this.setDataSource();
@@ -58,10 +60,17 @@ export class HomeComponent implements OnInit {
       this.windowChatHistory =  this.allWindowChatHistory[0];
     }
   }
+  showChatList() {
+    this.elem.nativeElement.querySelectorAll('.chat-list-container')[0].style['min-width'] = '100%';
+  }
+  hideChatList() {
+    this.elem.nativeElement.querySelectorAll('.chat-list-container')[0].style['min-width'] = '0';
+  }
 
   changeChatWindow(seletedChatMsg) {
     this.windowHeaderData = seletedChatMsg;
     this.windowChatHistory = this.allWindowChatHistory[seletedChatMsg.id - 1];
+    this.hideChatList();
     // this._chatWindowMsgsService.getChatWindowDataById(seletedChatMsg.id)
     //   .subscribe(
     //     res => {

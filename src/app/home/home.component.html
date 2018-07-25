@@ -1,6 +1,6 @@
 <mat-card class="wrapper">
   <div class="app-container">
-    <app-chat-list class="chat-list-container"
+    <app-chat-list #appChatList class="chat-list-container"
               [listChatArray]="msgs"
                (showContactProfile)="isContactProfileActive = true"
                (showUserProfile)="isUserProfileActive = true"
@@ -11,7 +11,7 @@
     <div class="chat-window">
       <app-chat-window [chatWindowHeaderData]="windowHeaderData" *ngIf="windowHeaderData && windowChatHistory"
        [chatHistoryData]="windowChatHistory" class="chat-window-container"
-                   (showOptions)="isContactProfileActive = !isContactProfileActive"></app-chat-window>
+                   (showChatList)="showChatList()" (showOptions)="isContactProfileActive = !isContactProfileActive"></app-chat-window>
       <app-contact-profile class="contact-profile-container"
                        (closeContactProfile)="isContactProfileActive = false"
                        [class.active]="isContactProfileActive"></app-contact-profile>

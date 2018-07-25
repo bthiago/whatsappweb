@@ -14,6 +14,7 @@ export class ChatWindowComponent implements AfterViewChecked {
   @Input() chatWindowHeaderData;
   @Input() chatHistoryData;
   @Output() showOptions: EventEmitter<any> = new EventEmitter<any>();
+  @Output() showChatList: EventEmitter<any> = new EventEmitter<any>();
   ngAfterViewChecked(): void {
       // scroll chat container to bottom
       this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
@@ -21,6 +22,9 @@ export class ChatWindowComponent implements AfterViewChecked {
 
   btnOptionsClicked() {
     this.showOptions.emit(true);
+  }
+  backButtonClicked() {
+    this.showChatList.emit(true);
   }
   removePlaceholder() {
     if (this.newMsgText === 'Type a message') {

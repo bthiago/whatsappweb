@@ -1,3 +1,14 @@
+@media screen and (max-width: 800px) {
+  .chat-window-header .backButton{
+    display: block;
+  }
+}
+
+.backButton{
+  display: none;
+  cursor: pointer;
+}
+
 .header {
   padding: 10px;
   height: 70px;
