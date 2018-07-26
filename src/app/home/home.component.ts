@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { ChatListService } from '../services/chat-list.service';
 import { ChatWindowMsgsService } from '../services/chat-window-msgs.service';
 import { ChatWindowDataInterface, ChatListDataInterface } from '../../assets/chatInterfaces';
@@ -8,11 +8,12 @@ import * as firebase from 'firebase/app';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
   isUserProfileActive;
-  topics;
+  selectedMsgId;
   isContactProfileActive;
   msgs: ChatListDataInterface[];
   allWindowChatHistory: ChatWindowDataInterface[];
@@ -21,26 +22,31 @@ export class HomeComponent implements OnInit {
   constructor(private _chatListService: ChatListService,
     private elem: ElementRef,
     private _chatWindowMsgsService: ChatWindowMsgsService,
-    private cdr: ChangeDetectorRef,
-    private ngZone: NgZone,
+    private cd: ChangeDetectorRef,
     public db: AngularFireDatabase) {
   }
   @ViewChild('appChatList') appChatList;
 
+
   ngOnInit(): void {
     this.setDataSource();
     firebase.database().ref('chatWindowData').on('value', snapshot => {
-      this.ngZone.run(() => {
-        this.allWindowChatHistory = snapshot.val();
+        this.allWindowChatHistory = snapshot.val(); // value change
+        this.allWindowChatHistory = [...this.allWindowChatHistory]; // reference change
+        this.windowChatHistory = this.allWindowChatHistory[this.selectedMsgId || 0];
+        this.windowChatHistory = Object.assign({}, this.windowChatHistory);
         localStorage.setItem('chatWindowData', JSON.stringify(this.allWindowChatHistory));
-      });
-      // this.cdr.detectChanges();
+      this.refresh();
     });
     firebase.database().ref('chatListData').on('value', snapshot => {
       this.msgs = snapshot.val();
+      this.msgs = [...this.msgs];
       localStorage.setItem('chatListData', JSON.stringify(this.msgs));
-      // this.cdr.detectChanges();
+      this.refresh();
     });
+  }
+  refresh() {
+    this.cd.detectChanges();
   }
   setDataSource(): any {
     if (!localStorage.getItem('chatListData')) {
@@ -88,7 +94,9 @@ export class HomeComponent implements OnInit {
 
   changeChatWindow(seletedChatMsg) {
     this.windowHeaderData = seletedChatMsg;
-    this.windowChatHistory = this.allWindowChatHistory[seletedChatMsg.id - 1];
+    this.selectedMsgId = seletedChatMsg.id - 1;
+    this.windowChatHistory =  Object.assign({}, this.allWindowChatHistory[seletedChatMsg.id - 1]);
+    this.refresh();
     this.hideChatList();
     // this._chatWindowMsgsService.getChatWindowDataById(seletedChatMsg.id)
     //   .subscribe(

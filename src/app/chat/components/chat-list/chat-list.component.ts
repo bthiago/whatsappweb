@@ -1,9 +1,10 @@
-import { Component, Output, EventEmitter, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild, ElementRef, Input, ChangeDetectionStrategy} from '@angular/core';
 import { ChatListDataInterface } from '../../../../assets/chatInterfaces';
 @Component({
   selector: 'app-chat-list',
   templateUrl: './chat-list.component.html',
-  styleUrls: ['./chat-list.component.css']
+  styleUrls: ['./chat-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatListComponent {
   @Input() listChatArray;

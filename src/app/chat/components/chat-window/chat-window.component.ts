@@ -1,11 +1,13 @@
-import { Component, Output, EventEmitter, Input, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
+import { Component, Output, EventEmitter, Input, ViewChild, ElementRef, AfterViewChecked, ChangeDetectionStrategy } from '@angular/core';
 import { Socket } from '../../../websocket/echoSocket';
 import { ChatWindowMsgsService } from '../../../services/chat-window-msgs.service';
 
 @Component({
   selector: 'app-chat-window',
   templateUrl: './chat-window.component.html',
-  styleUrls: ['./chat-window.component.css']
+  styleUrls: ['./chat-window.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class ChatWindowComponent implements AfterViewChecked {
   constructor( private _chatWindowService: ChatWindowMsgsService) {
